@@ -16,5 +16,7 @@ if(args.help || !args.file) {
     process.exit(1);
 }
 
-var content = hello.say(args.file);
-console.log(content.toString());
+hello.say(args.file, function(err, content) {
+    if(err) throw err;
+    console.log(content.toString());
+});
