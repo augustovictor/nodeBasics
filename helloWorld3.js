@@ -7,6 +7,8 @@ function readFile(fileName) {
         var stream = fs.createReadStream(fileName);
         var content = "";
 
+        stream.pipe( fs.createWriteStream(fileName + ".bkp") );
+
         // Listen for events
         // It will run every time an event is fired
         stream.on('data', function(data) {
