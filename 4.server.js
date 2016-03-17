@@ -9,15 +9,15 @@ function httpHandler(req, res) {
             res.end("Hellow World! " + Math.random());
         }
         else {
-            sayGetOut();
+            sayGetOut(res);
         }
     }
     else {
-        sayGetOut();
+        sayGetOut(res);
     }
 }
 
-function sayGetOut() {
+function sayGetOut(res) {
     res.writeHead(403);
     res.end('Get outta here!');
 }
