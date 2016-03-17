@@ -3,3 +3,9 @@ In order to create a package you should follow these steps:
 2 - Create a package.json in the root directory of your application. 'Semver -> Semantic Versioning' give a heads up to it.
     Versions: Major.Minor.Patch
 3 - npm publish <package.name>
+
+
+______________________________________________
+
+Modules:
+1 - Forever: Restart node processes if they die. We don't always write perfect programs. So whenever it stops forever will restart it.
