@@ -18,7 +18,7 @@ function httpHandler(req, res) {
                     done("Hello world " + randNumber);
                 }, 1000);
             })
-            .val(function(msg) {
+            .val(function(msg) { // val() will run in Sync fashion and seq() in Async
                 res.end(msg);
             })
             .or(function(err) {

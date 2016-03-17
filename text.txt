@@ -9,3 +9,9 @@ ______________________________________________
 
 Modules:
 1 - Forever: Restart node processes if they die. We don't always write perfect programs. So whenever it stops forever will restart it.
+
+______________________________________________
+
+Socket.io
+An http request made from the browser to the server and in it's header it says it will do web sockets.
+Analyze if it is necessary to use ssl in your websockets
