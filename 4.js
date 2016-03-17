@@ -1,9 +1,9 @@
-var hello = require('./helloWorld2');
+var hello = require('./helloWorld3');
 var args = require('minimist')(process.argv.slice(2), { string: "file" }); // Do not use single quotes
 
 //----------------------------------------------------------------------
 function printHello() {
-    console.log("3.js (c) Victor Augusto");
+    console.log("4.js (c) Victor Augusto");
     console.log("");
     console.log("Usage:");
     console.log("--file={name}     read file {name} and output it");

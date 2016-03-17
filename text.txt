@@ -1,1 +1,5 @@
-Testing text within a file
+In order to create a package you should follow these steps:
+1 - Create a folder with the name of your module. Keep things modular;
+2 - Create a package.json in the root directory of your application. 'Semver -> Semantic Versioning' give a heads up to it.
+    Versions: Major.Minor.Patch
+3 - npm publish <package.name>

@@ -1,14 +1,17 @@
 {
   "name": "nodeBasis",
-  "version": "1.0.0",
-  "description": "",
-  "main": "1.js",
+  "version": "1.0.0-a",
+  "description": "Hello world",
+  "main": "3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+      "hello",
+      "world"
+  ],
+  "author": "Victor Augusto <victoraweb@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "asynquence": "^0.9.0",
     "asynquence-contrib": "^0.26.0",
