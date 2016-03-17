@@ -34,12 +34,17 @@ function sayGetOut(res) {
 
 function ioHandler(socket) {
     function disconnect() {
+        clearInterval(interval);
         console.log("Client disconnected");
     }
 
     socket.on('disconnect', disconnect);
 
     console.log("Client connected");
+
+    var interval = setInterval(function () {
+        socket.emit('hello', Math.random());
+    }, 1000);
 
 }
 
