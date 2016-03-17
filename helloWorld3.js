@@ -3,11 +3,21 @@ var ASQ = require('asynquence');
 require('asynquence-contrib');
 
 function readFile(fileName) {
-    var sq = ASQ();
+    return ASQ(function(done) {
+        var stream = fs.createReadStream(fileName);
+        var content = "";
 
-    fs.readFile( fileName, sq.errfcb() );
+        // Listen for events
+        // It will run every time an event is fired
+        stream.on('data', function(data) {
+            // console.log("data");
+            content += data;
+        });
 
-    return sq;
+        stream.on('end', function() {
+            done(content);
+        });
+    });
 }
 
 function say(fileName) {
@@ -18,7 +28,7 @@ function say(fileName) {
 function delayMsg(done, fileContent) {
     setTimeout(function() {
         done(fileContent);
-    }, 1000);
+    }, 2000);
 }
 
 module.exports.say = say
