@@ -42,9 +42,9 @@ function ioHandler(socket) {
 
     console.log("Client connected");
 
-    var interval = setInterval(function () {
-        socket.emit('hello', Math.random());
-    }, 1000);
+    // var interval = setInterval(function () {
+    //     socket.emit('hello', Math.random());
+    // }, 1000);
 
     socket.on('sendMessage', function(msg) {
         socket.broadcast.emit('message', msg); // Using socket.broadcast sends the msg for everyon except the msg sender. Use io.broadcast if you want to include sender

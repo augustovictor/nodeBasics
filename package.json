@@ -2,7 +2,7 @@
   "name": "nodeBasis",
   "version": "1.0.0-a",
   "description": "Hello world",
-  "main": "3.js",
+  "main": "9.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

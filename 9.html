@@ -23,6 +23,13 @@
         </p>
 
         <script type="text/javascript">
+        var userName = null;
+
+        function askName() {
+            userName = prompt('What will be your username?');
+        }
+
+        askName();
 
         var socket = io.connect("http://localhost:3000"); // Socket namespacing
 
@@ -39,14 +46,14 @@
         // });
 
         socket.on('message', function(msg) {
-            document.getElementById('messages-container').innerHTML += msg + '<br>';
+            document.getElementById('messages-container').innerHTML += userName + ': ' + msg + '<br>';
         });
 
         document.getElementById('sendMessage').addEventListener('click', function() {
             var msg = document.getElementById('message').value;
             if(msg) {
                 socket.emit('sendMessage', msg);
-                document.getElementById('messages-container').innerHTML += msg + '<br>';
+                document.getElementById('messages-container').innerHTML += userName + ': ' + msg + '<br>';
                 document.getElementById('message').value = '';
             }
         }, false);
