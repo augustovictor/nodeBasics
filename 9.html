@@ -55,6 +55,10 @@
                 return false;
             }
 
+            function rollScreen() {
+                window.scrollTo(0,document.body.scrollHeight);
+            }
+
             var socket = io.connect(); // Socket namespacing
             var user = null;
 
@@ -68,6 +72,7 @@
                 if(user == null) {
                     user = currentUser;
                     document.getElementById('currentUser').innerHTML = user.name;
+                    rollScreen();
                 }
             });
 
@@ -78,6 +83,7 @@
                 data.users.forEach(function(user) {
                     document.getElementById('onlineUsers').innerHTML += '<li> <button class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-user" aria-hidden="true"> </span> ' + user.name + '</button></li>';
                 });
+                rollScreen();
             })
 
             socket.on('disconnect', function() {
@@ -86,7 +92,7 @@
 
             socket.on('message', function(msg) {
                 document.getElementById('messages-container').innerHTML += msg + '<hr>';
-                window.scrollTo(0,document.body.scrollHeight);
+                rollScreen();
             });
 
             document.getElementById('sendMessage').addEventListener('click', function() {
@@ -95,7 +101,7 @@
                     socket.emit('sendMessage', msg);
                     document.getElementById('messages-container').innerHTML += msg + '<hr>';
                     document.getElementById('message').value = '';
-                    window.scrollTo(0,document.body.scrollHeight);
+                    rollScreen();
                 }
             }, false);
 
