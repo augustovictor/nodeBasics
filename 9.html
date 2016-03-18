@@ -14,7 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <style media="screen">
             #sendMessage {
-                display: none;
+                /*display: none;*/
             }
 
             #form-message-container {
@@ -37,8 +37,8 @@
             </ul>
 
             <form id="form-message-container" class="form-group" onsubmit="return validateForm()">
-                <input class="form-control col-md-12" type="text" id="message" name="message" placeholder="type here...">
-                <input type="submit" id="sendMessage" name="submit" value="Send">
+                <input class="form-control col-md-10" type="text" id="message" name="message" placeholder="type here...">
+                <input type="submit" class="col-md-12 btn btn-primary" id="sendMessage" name="submit" value="Send">
             </form>
 
             <div id="messages-container">
