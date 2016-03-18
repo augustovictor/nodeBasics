@@ -5,7 +5,7 @@ var node_static = require('node-static');
 var static_files = new node_static.Server(__dirname);
 
 
-var port = 3000;
+var port = process.env.PORT || 8080;
 var host = '127.0.0.1';
 
 
