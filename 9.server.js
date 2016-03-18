@@ -8,6 +8,9 @@ var static_files = new node_static.Server(__dirname);
 var port = process.env.PORT || 8080;
 var host = process.env.HOST || '0.0.0.0';
 
+var users = [];
+var id = 1;
+
 
 function httpHandler(req, res) {
     if(req.method === 'GET') {
@@ -34,17 +37,27 @@ function sayGetOut(res) {
 
 function ioHandler(socket) {
     function disconnect() {
-        clearInterval(interval);
         console.log("Client disconnected");
     }
 
     socket.on('disconnect', disconnect);
 
-    console.log("Client connected");
+    socket.on('newUser', function(userName) {
+        if(userName == null) userName = 'user'+id;
+        users.push({
+            id: id,
+            name: userName
+        });
 
-    // var interval = setInterval(function () {
-    //     socket.emit('hello', Math.random());
-    // }, 1000);
+        var welcomeMsg = 'User ' + users[id-1].name + ' entered the room.';
+        io.sockets.emit('newUserInRoom', { welcomeMsg: welcomeMsg, users: users });
+
+        socket.emit('userAdded', users[id-1]);
+
+        id++;
+    });
+
+    console.log("Client connected");
 
     socket.on('sendMessage', function(msg) {
         socket.broadcast.emit('message', msg); // Using socket.broadcast sends the msg for everyon except the msg sender. Use io.broadcast if you want to include sender
