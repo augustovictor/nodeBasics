@@ -4,23 +4,45 @@
         <meta charset="utf-8">
         <title>Chat 4dots</title>
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <style media="screen">
+            #sendMessage {
+                display: none;
+            }
+
+            #form-message-container {
+                position: fixed;
+                bottom: 0;
+                width: 95%;
+            }
+        </style>
     </head>
     <body>
 
+        <div id="container" class="container-fluid">
+            <h1>Chat 4dots - User: <span id="currentUser"></span></h1>
+            <h3>Online users:</h3>
+            <ul id="onlineUsers" class="list-unstyled list-inline">
+            </ul>
 
-        <h1>Chat 4dots - User: <span id="currentUser"></span></h1>
-        <h3>Online users:</h3>
-        <ul id="onlineUsers">
-        </ul>
-        <div>
-            <form onsubmit="return validateForm()">
-                <input type="text" id="message" name="message" placeholder="type here...">
+            <form id="form-message-container" class="form-group" onsubmit="return validateForm()">
+                <input class="form-control col-md-12" type="text" id="message" name="message" placeholder="type here...">
                 <input type="submit" id="sendMessage" name="submit" value="Send">
             </form>
-        </div>
-        <div id="messages-container">
+
+            <div id="messages-container">
+
+            </div>
 
         </div>
+
 
 
         <p id="randomNumber">
@@ -50,11 +72,11 @@
             });
 
             socket.on('newUserInRoom', function(data) {
-                document.getElementById('messages-container').innerHTML += data.welcomeMsg.toString() + '<br>';
+                document.getElementById('messages-container').innerHTML += data.welcomeMsg.toString() + '<hr>';
 
                 document.getElementById('onlineUsers').innerHTML = '';
                 data.users.forEach(function(user) {
-                    document.getElementById('onlineUsers').innerHTML += '<li>' + user.name + '</li>';
+                    document.getElementById('onlineUsers').innerHTML += '<li> <button class="btn btn-primary btn-sm"> <span class="glyphicon glyphicon-user" aria-hidden="true"> </span> ' + user.name + '</button></li>';
                 });
             })
 
@@ -63,15 +85,17 @@
             });
 
             socket.on('message', function(msg) {
-                document.getElementById('messages-container').innerHTML += msg + '<br>';
+                document.getElementById('messages-container').innerHTML += msg + '<hr>';
+                window.scrollTo(0,document.body.scrollHeight);
             });
 
             document.getElementById('sendMessage').addEventListener('click', function() {
                 var msg = user.name + ': ' + document.getElementById('message').value;
                 if(msg) {
                     socket.emit('sendMessage', msg);
-                    document.getElementById('messages-container').innerHTML += msg + '<br>';
+                    document.getElementById('messages-container').innerHTML += msg + '<hr>';
                     document.getElementById('message').value = '';
+                    window.scrollTo(0,document.body.scrollHeight);
                 }
             }, false);
 
