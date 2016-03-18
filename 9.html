@@ -9,14 +9,14 @@
 
 
         <h1>Chat 4dots</h1>
-        <div id="messages-container">
-
-        </div>
-
         <div>
             <input type="text" id="message" name="message" placeholder="type here...">
             <input type="submit" id="sendMessage" name="submit" value="Send">
         </div>
+        <div id="messages-container">
+
+        </div>
+
 
         <p id="randomNumber">
 
@@ -31,7 +31,7 @@
 
         askName();
 
-        var socket = io.connect("https://localhost:3000"); // Socket namespacing
+        var socket = io.connect(); // Socket namespacing
 
         socket.on('connect', function() {
             console.log('Connected');
