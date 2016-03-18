@@ -6,7 +6,7 @@ var static_files = new node_static.Server(__dirname);
 
 
 var port = process.env.PORT || 8080;
-var host = '127.0.0.1';
+var host = process.env.HOST || '0.0.0.0';
 
 
 function httpHandler(req, res) {
