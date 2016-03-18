@@ -3,6 +3,7 @@
   "version": "1.0.0-a",
   "description": "Hello world",
   "main": "9.js",
+  "start": "9.server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
